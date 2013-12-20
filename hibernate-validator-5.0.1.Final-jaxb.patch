@@ -1,0 +1,152 @@
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedExecutableBuilder.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedExecutableBuilder.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedExecutableBuilder.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedExecutableBuilder.java	2013-05-14 14:05:37.894803993 +0200
+@@ -94,10 +94,10 @@
+			ExecutableElement methodExecutableElement = ExecutableElement.forMethod( method );
+
+			// ignore annotations
+-			if ( methodType.getIgnoreAnnotations() != null ) {
++			if ( methodType.isIgnoreAnnotations() != null ) {
+				annotationProcessingOptions.ignoreConstraintAnnotationsOnMember(
+						method,
+-						methodType.getIgnoreAnnotations()
++						methodType.isIgnoreAnnotations()
+				);
+			}
+
+@@ -154,10 +154,10 @@
+			ExecutableElement constructorExecutableElement = ExecutableElement.forConstructor( constructor );
+
+			// ignore annotations
+-			if ( constructorType.getIgnoreAnnotations() != null ) {
++			if ( constructorType.isIgnoreAnnotations() != null ) {
+				annotationProcessingOptions.ignoreConstraintAnnotationsOnMember(
+						constructor,
+-						constructorType.getIgnoreAnnotations()
++						constructorType.isIgnoreAnnotations()
+				);
+			}
+
+@@ -253,10 +253,10 @@
+		}
+
+		// ignore annotations
+-		if ( crossParameterType.getIgnoreAnnotations() != null ) {
++		if ( crossParameterType.isIgnoreAnnotations() != null ) {
+			annotationProcessingOptions.ignoreConstraintAnnotationsForCrossParameterConstraint(
+					executableElement.getMember(),
+-					crossParameterType.getIgnoreAnnotations()
++					crossParameterType.isIgnoreAnnotations()
+			);
+		}
+
+@@ -293,10 +293,10 @@
+		);
+
+		// ignore annotations
+-		if ( returnValueType.getIgnoreAnnotations() != null ) {
++		if ( returnValueType.isIgnoreAnnotations() != null ) {
+			annotationProcessingOptions.ignoreConstraintAnnotationsForReturnValue(
+					executableElement.getMember(),
+-					returnValueType.getIgnoreAnnotations()
++					returnValueType.isIgnoreAnnotations()
+			);
+		}
+
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedFieldBuilder.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedFieldBuilder.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedFieldBuilder.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedFieldBuilder.java	2013-05-14 14:05:37.895803938 +0200
+@@ -82,10 +82,10 @@
+
+
+			// ignore annotations
+-			if ( fieldType.getIgnoreAnnotations() != null ) {
++			if ( fieldType.isIgnoreAnnotations() != null ) {
+				annotationProcessingOptions.ignoreConstraintAnnotationsOnMember(
+						field,
+-						fieldType.getIgnoreAnnotations()
++						fieldType.isIgnoreAnnotations()
+				);
+			}
+		}
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedGetterBuilder.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedGetterBuilder.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedGetterBuilder.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedGetterBuilder.java	2013-05-14 14:05:37.897803829 +0200
+@@ -87,10 +87,10 @@
+			constrainedExecutables.add( constrainedGetter );
+
+			// ignore annotations
+-			if ( getterType.getIgnoreAnnotations() != null ) {
++			if ( getterType.isIgnoreAnnotations() != null ) {
+				annotationProcessingOptions.ignoreConstraintAnnotationsOnMember(
+						getter,
+-						getterType.getIgnoreAnnotations()
++						getterType.isIgnoreAnnotations()
+				);
+			}
+		}
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedParameterBuilder.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedParameterBuilder.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedParameterBuilder.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedParameterBuilder.java	2013-05-14 14:05:37.898803773 +0200
+@@ -71,11 +71,11 @@
+			);
+
+			// ignore annotations
+-			if ( parameterType.getIgnoreAnnotations() != null ) {
++			if ( parameterType.isIgnoreAnnotations() != null ) {
+				annotationProcessingOptions.ignoreConstraintAnnotationsOnParameter(
+						executableElement.getMember(),
+						i,
+-						parameterType.getIgnoreAnnotations()
++						parameterType.isIgnoreAnnotations()
+				);
+			}
+
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedTypeBuilder.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedTypeBuilder.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedTypeBuilder.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ConstrainedTypeBuilder.java	2013-05-14 14:05:37.899803718 +0200
+@@ -72,10 +72,10 @@
+		}
+
+		// ignore annotation
+-		if ( classType.getIgnoreAnnotations() != null ) {
++		if ( classType.isIgnoreAnnotations() != null ) {
+			annotationProcessingOptions.ignoreClassLevelConstraintAnnotations(
+					beanClass,
+-					classType.getIgnoreAnnotations()
++					classType.isIgnoreAnnotations()
+			);
+		}
+
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ValidationXmlParser.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ValidationXmlParser.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/ValidationXmlParser.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/ValidationXmlParser.java	2013-05-14 14:05:37.912803003 +0200
+@@ -149,7 +149,7 @@
+		EnumSet<ExecutableType> defaultValidatedExecutableTypes = executableValidationType == null
+				? getValidatedExecutableTypes( null )
+				: getValidatedExecutableTypes( executableValidationType.getDefaultValidatedExecutableTypes() );
+-		boolean executableValidationEnabled = executableValidationType == null || executableValidationType.getEnabled();
++		boolean executableValidationEnabled = executableValidationType == null || executableValidationType.isEnabled();
+
+		return new BootstrapConfigurationImpl(
+				config.getDefaultProvider(),
+diff -Nru hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/XmlMappingParser.java hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/XmlMappingParser.java
+--- hibernate-validator-5.0.1.Final/engine/src/main/java/org/hibernate/validator/internal/xml/XmlMappingParser.java	2013-04-30 21:42:51.000000000 +0200
++++ hibernate-validator-5.0.1.Final-gil/engine/src/main/java/org/hibernate/validator/internal/xml/XmlMappingParser.java	2013-05-14 14:05:37.905803388 +0200
+@@ -124,7 +124,7 @@
+					// update annotation ignores
+					annotationProcessingOptions.ignoreAnnotationConstraintForClass(
+							beanClass,
+-							bean.getIgnoreAnnotations()
++							bean.isIgnoreAnnotations()
+					);
+
+					ConstrainedType constrainedType = ConstrainedTypeBuilder.buildConstrainedType(
+@@ -251,7 +251,7 @@
+		constraintHelper.putValidatorClasses(
+				annotationClass,
+				constraintValidatorClasses,
+-				Boolean.TRUE.equals( validatedByType.getIncludeExistingValidators() )
++				Boolean.TRUE.equals( validatedByType.isIncludeExistingValidators() )
+		);
+	}
