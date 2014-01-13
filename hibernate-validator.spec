@@ -1,4 +1,4 @@
-%_javapackages_macros
+%{?_javapackages_macros:%_javapackages_macros}
 %global namedreltag .Final
 %global namedversion %{version}%{?namedreltag}
 %global majorversion 5
@@ -176,3 +176,35 @@ install -m 644 engine/target/hibernate-validator-%{namedversion}-testing.jar \
 
 %files javadoc -f .mfiles-javadoc
 %doc license.txt
+
+%changelog
+* Thu May 09 2013 gil cattaneo <puntogil@libero.it> 5.0.1-1
+- update to 5.0.1.Final
+- adapted to current guideline
+- switch to XMvn
+
+* Fri Feb 22 2013 Juan Hernandez <juan.hernandez@redhat.com> - 4.2.0-8
+- Remove the wagon-webdav build extension (rhbz 914076)
+
+* Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2.0-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
+* Wed Feb 06 2013 Java SIG <java-devel@lists.fedoraproject.org> - 4.2.0-6
+- Update for https://fedoraproject.org/wiki/Fedora_19_Maven_Rebuild
+- Replace maven BuildRequires with maven-local
+
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.2.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
+* Mon Mar 5 2012 Juan Hernandez <juan.hernandez@redhat.com> - 4.2.0-4
+- Cleanup of the spec file
+- Replace jaxb2-maven-plugin with maven-jaxb2-plugin
+
+* Sat Jan 21 2012 Marek Goldmann <mgoldman@redhat.com> - 4.2.0-3
+- Building all classes with jaxb2 xjc target
+
+* Wed Dec 14 2011 Andy Grimm <agrimm@gmail.com> - 4.2.0-2
+- include both pom files, with correct names
+
+* Tue Oct 18 2011 Andy Grimm <agrimm@gmail.com> - 4.2.0-1
+- Initial package
