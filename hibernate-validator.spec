@@ -7,7 +7,7 @@ Version:       5.0.1
 Release:       1.0%{?dist}
 Summary:       Bean Validation 1.1 (JSR 349) Reference Implementation
 License:       ASL 2.0
-URL:           http://www.hibernate.org/subprojects/validator.html
+URL:           https://www.hibernate.org/subprojects/validator.html
 Source0:       https://github.com/hibernate/hibernate-validator/archive/%{namedversion}.tar.gz
 # JAXB2 and JDK7 problems see https://hibernate.atlassian.net/browse/HV-528
 Patch0:        %{name}-5.0.1.Final-jaxb.patch
